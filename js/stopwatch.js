@@ -10,14 +10,15 @@ class Stopwatch {
     };
   }
 
+  // Инициализация блока секндомера в DOM-дереве
   #init() {
     this.stopwatch = document.createElement('div');
     this.stopwatch.classList.add('cg-stopwatch');
     this.stopwatch.innerHTML = getTemplate();
-
     this.selector.append(this.stopwatch);
   }
 
+  // Запустить секундомер
   startTimer() {
     this.interval = setInterval(() => {
       if (this.time.seconds === 59) {
@@ -30,25 +31,33 @@ class Stopwatch {
     }, 1000);
   }
 
+  // Остановить секундомер
   stopTimer() {
     clearInterval(this.interval);
   }
 
+  // Сбросить секундомер
   resetTimer() {
-    // TODO: reset timer
     clearInterval(this.interval);
     this.time.minutes = 0;
     this.time.seconds = 0;
     this.#setTimer();
   }
 
+  // Записать в span новое значение
   #setTimer() {
+    this.stopwatch.querySelector('span').innerText = `${this.#getStringTime()}`;
+  }
+
+  // Получить строковую запись времени
+  #getStringTime() {
     let stringTime = `${this.time.minutes < 10 ? '0' + this.time.minutes.toString() : this.time.minutes}:${
       this.time.seconds < 10 ? '0' + this.time.seconds.toString() : this.time.seconds
     }`;
-    this.stopwatch.querySelector('span').innerText = `${stringTime}`;
+    return stringTime;
   }
 
+  // Обработчики событий
   #clickHandler() {
     this.stopwatch.querySelector('[data-stopwatch="start"]').addEventListener('click', (e) => {
       this.startTimer();
@@ -64,6 +73,7 @@ class Stopwatch {
   }
 }
 
+// HTML-шаблон секундомера
 function getTemplate() {
   return `
     <div class="cg-stopwatch__top"><span>00:00<span></div>
