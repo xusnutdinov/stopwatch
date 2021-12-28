@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Rubik', sans-serif;
+}
+
+.app {
+  background-color: orange;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  min-height: 100vh;
+  justify-content: center;
+}
+
+.app__title {
+  font-size: 72px;
+  line-height: 130%;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.app__title span {
+  font-size: 112px;
+}
